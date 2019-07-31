@@ -1,4 +1,4 @@
-# DataStructures & Algorithms - Refresher
+# Data Structures & Algorithms - Refresher
 Data Structures and Algorithms implementations using Python. 
 Also contains assignments and Projects from Udacity Nanodegree.
 
