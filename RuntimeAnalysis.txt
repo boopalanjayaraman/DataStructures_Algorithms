@@ -1,0 +1,60 @@
+Run time Analysis on the tasks and their performance:
+
+Now, let's look at the worst/average case Big-O notation for our tasks. 
+For simplicity purposes, I've not considered the file-read operations (csv files) in this analysis 
+(Which could be O(n) since as the input file gets large, number of lines or records increase, 
+and hence the time to read the file might also increase proportionally if accessed sequentially, 
+using a reader in a single thread.)
+
+Task-0: (Printing first text record and last call record.)
+-------
+The performance for this task will be in the order of "O(1)". It'll be constant. 
+We're accessing the first and last elements of two arrays using indices directly.
+The time to perform this task does not change based on the volume of inputs. And hence O(1).
+
+Task-1: (Finding unique telephone numbers in the records.)
+-------
+This will be in the order of "O(n)". As the input size increases, the response time for the current logic increases proportionately.
+The current logic involves creating two list objects for two columns for each of the two files. And a set is created for their union.
+If we assume, m is the size of texts list, and n is the size of calls list,
+    (2 * m) for list creation + 
+    (2 * n) for list creation + 
+    (m + n) for unifying them +
+    (m + n) for creating a set
+Which is - 3 * (m + n) ~ O(N), where N is the size of both inputs
+
+Task-2: (Finding telephone number that spent longest time)
+---------
+This again, will be in the order of "O(n)". 
+The current logic loops through the calls list, adds the number to a dictionary and increments the call duration as its value.
+Then it again goes through the dictionary to determine the longest time spent. Dictionary accesses are O(1), i.e, constant time.
+Hence, assuming n is the size of calls list, 
+    (1 * n) for dictionary creation +
+    (1 * n * O(1)) for dictionary navigation and reading call duration, worst case, all numbers are unique.
+Which is 2 * n ~ O(n).
+
+Task-3: (Area codes of numbers called by Bangalore callers & percentage of local calls.)
+--------
+This will be in the order of "O(n log n)" at the worst case scenario. 
+
+For instance, this takes O(n) for navigating through list and forming area codes dictionary.
+Assuming the worst case, the numbers are unique for each record, and dictionary will have 'n' keys and number of calls.
+The percentage calculation takes O(n) time for summing up the number of calls. 
+But, we are printing the codes after sorting alphabetically. 
+So, assuming the sorting functionality implements a sort algorithm such as QuickSort, etc., 
+we can consider that this happens in the order of O(n log n).
+
+So, O(n logn n) + O(n) + O(n) ~ O(n log n)
+
+Task-4: Possible telemarketers
+--------
+This again, will happen in the order of "O(n log n)" at the worst case scenario.
+
+Current logic goes through two lists (2 * O(n)) and forms four sets. 
+Set read operations are considered to happen with a time complexity of O(1) since it implments a hashset.
+
+In the worst case scenario, if we assume all numbers are unique, the sorting operation will run in the order of O(n log n).
+So, O(n log n) + O(n) + O(n) ~ O(n log n)
+
+
+
