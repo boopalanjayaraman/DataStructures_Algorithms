@@ -1,2 +1,5 @@
-# DataStructures_Algorithms
-Data Structures and Algorithms implementations using Python. Also contains assignments and Projects from Udacity Nanodegree.
+# DataStructures & Algorithms - Refresher
+Data Structures and Algorithms implementations using Python. 
+Also contains assignments and Projects from Udacity Nanodegree.
+
+Project01 - does Big O notation analysis on a few sample scenarios
