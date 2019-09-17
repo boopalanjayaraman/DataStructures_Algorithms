@@ -1,0 +1,55 @@
+Problem 1 - (LRU Cache):
+------------------------
+After considering the requirements of LRU cache,  that an item least accessed / unaccessed should be removed first, I decided to go with an ordered dictionary for the internal storage of cache items. Ordered dictionary preserves the order in which items were inserted. This lets us find even the unaccessed items.
+
+We can go with a queue to store the history of accessed items (and unaccessed items with a little tweak), but it might lead to a O(n) operation when an item is accessed multiple times (to dequeue least accessed item).
+
+Time complexity:
+
+All the operations - set & get, support O(1) requirement, since we use Ordered dictionary as the underlying data structure.  
+
+Problem 2 - (File recursion):
+-----------------------------
+Used os.path.isfile to detect files to check for given suffixes and used os.path.isdir to recursively call the routine for further processing.
+
+Time complexity:
+
+This depends on the number of files / directories and their depth (level) we are trying to process here. If we assume L is the level (depth) of recursion, then it could be O(L * n) given n is the average number of files at each level. We use a python list to store the output, and inserting items into it is a O(1) operation. In the really worst case, since the call stack is being used for recursion history, a really deep nested directory structure might result in stack overflow exception although it is 'not practical'. 
+
+Problem 3 - (Huffman coding):
+------------------------------
+I have implemented the huffman coding algorithm following what was stated in the requirements of the problem. This implementation does *not* use popular MinHeap implementation of Huffman coding algorithm (as I understand from my reading) to pick the least two frequently occurring characters. This just sorts the data in ascending order for the sake of implementation, and picks top two to pick the least two frequently occurring characters. This is a slower implementation.
+
+Encoding uses DFS for traversing the huffman tree, and decoding uses plain recursion to reconstruct the data from the tree. We can consider the following functions and their approximate time complexities.
+
+    Getting character frequencies (counting) - O(n) , n being the length of text
+    Constructing Huffman tree - O(n * n log n), n being the number of characters (or tree nodes) here. For                              a textual book content, this might be up to 100 characters (nodes). For                                 ex., for the sample content from Anna Karenina book, it had 81+ nodes. O                                 (n log n) is for sorting and here, it is being called for every two                                    least nodes.
+    Getting Codes using DFS - ~O(V), V being vertices (nodes) in the binary tree
+    Encoding input text - O(n), where n being the length of plain text, and reading codes from character                        map is O(1)
+    Decoding the data - O(n), n being encoded text's length 
+
+
+Problem 4 - (Active Directory):
+--------------------------------
+I took some liberty here and deviated a little from what was suggested in the requirement. In the original class, users was an array. After considering the performance, and considering the fact that users will be a collection of user ids (which are going to be unique in nature, and wont have duplicates), I just made it to be "a set" instead of array.
+
+That way, look ups will be of O(1) performance. And The look ups happen in a BFS kind of fashion in a recursive manner. First the current node is checked and then the child groups are checked for the user id. The traversing will take O(n) where n being the number of groups, since all the nodes are checked exactly once.
+
+Problem 5 - (Block Chain):
+--------------------------
+The problem was implemented using classes called Block and BlockChain. BlockChain uses LinkedList as underlying implementation (self.tail) and has a reference to its previous block using previous_block attribute.
+
+All the methods such as add, get, and length were implemented like a typical linked list but there is an additional method called is_valid to verify the validity of a blockchain. If any of the data in the middle is tampered, this method will return false because the hashes won't match. 
+
+The methods - add, get, length and is_valid will have O(n) worst case performance like a linked list. 
+
+Problem 6 - (Union & Intersection of linked lists):
+----------------------------------------------------
+The methods union and intersection were implemented using set operations. Python set is backed by a dict (which is supported by hashed keys) and is essential to offer O(1) performance for look ups.
+
+Here, union operation takes O(n + m) ~ O(N), where n and m being number of elements in both linked lists respectively, since we are iterating through both of them once sequentially and forming another linked list. Adding them further to a set directly results in constant time performance and is negligible.  
+
+Intersection operation takes again O(n + m) ~ O(N), because we are iterating through the first linked list to form a set, and iterating through second linked list to check against the first set (look-ups if O(1)).
+
+If we instead use linked list's native iterative search (look-up), the performance would drop to O(N^2). Set based operations are better for this case.
+
