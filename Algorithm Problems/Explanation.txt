@@ -1,0 +1,45 @@
+Problem 1 - (floored square root of number):
+--------------------------------------------
+The algorithm is implemented in a way that is similar to binary search / divide and conquer methodology. We choose a middle point to see if the squared product of middle point results in the given number. If the squared product is greater than the given number, then we choose a new middle point - between the current middle point and zero (starting point). Else, we choose a new middle point between the current middle point and the number (end point). 
+
+The time complexity of this algorithm is O(log(n)) which is that of a binary search operation. Space complexity is kind of constant - O(1) since we do not necessarily use any declared array or data structure.
+
+Problem 2 - (rotated array search):
+-----------------------------------
+To achieve O(log n) performance, we should employ binary search kind of algorithms. Here, but for the binary search to work, the array should have been sorted already. Since we have a pivoted / rotated array, we need to first find the pivot point using binary search. 
+
+In this case, pivot point is the only point where the element is greater than the next element. Using this, we figure out the pivot point. If there is no pivot point, then the array is not rotated, so we run binary search for the whole array once. Otherwise, we run binary searches on both sub arrays.
+
+The time complexity of this problem is O(log n). For finding the pivot index, it is O(log n), for running the search on two sub arrays, it is again dependent on O(log p) + O(log (n-p)) = which is ~ O(log n). Space complexity is O(n) to store the input but the algorithm does not create any additional objects apart from it.
+
+Problem 3 - (rearrange digits):
+-------------------------------
+To rearrange the array items to form digits of two numbers, for which the sum will be maximum, we need to follow this logic - 1. Sort the array in descending order. 2. Reorder the items to form number in an alternative fashion. For ex., [9,8,7,6] --> [97, 86]. 
+
+For sorting the array, Quick sort algorithm is being used here. For time complexity, this gives O(n log n) performance. And for space complexity, there is no additional data structure that is being used other than the input array, and hence this will be O(n) for storing the input.
+
+Problem 4 - (dutch national flag):
+----------------------------------
+For solving the dutch national flag problem (sorting arrays containing only 0,1,2 with single traversal), here a modified single iteration of quick-sort problem is used. We have two running index pointers here pointing to the next possible indices of zero and two. When we encounter them in the values, we just swap the data into these positions respectively.
+
+The time complexity is O(n) since we traverse the array once. Space complexity is also O(n) considering the given input. 
+
+Problem 5 - (Trie - autocomplete):
+----------------------------------
+As for time complexity, the operations of TrieNode - insert performs in the order of O(1), and suffixes method performs in the order of O(d * c) where d is the recursion depth and c is character length, both of which can vary. The operations of Trie - insert performs in the order of O(w) where w being the word length, and find performs in the order of O(w) where w being the word length, in the worst case.
+
+As for space complexity, the operations of Trie/TrieNode - depend on O(w * c) where w is the number of words and c is character length both of which can vary. 
+
+Problem 6 - (get MinMax):
+-------------------------
+This is a straightforward implementation of finding min and max numbers.
+
+Time complexity of this is O(n) since we need to traverse the list at least once. Space complexity of this is again O(n) considering the input size. Apart from that, no other data structure is being used.
+
+Problem 7 - (HttpRouter using Trie):
+------------------------------------
+The implementation is similar to problem 5 - Trie.
+
+For time complexity, the operations of RouteTrieNode - insert performs in the order of O(1). RouteTrie insert operation takes O(n) while n being the number of path sections (parts), which is negligible in practical URL cases. Find operation again performs in the order of O(n) while n being the number of path sections (parts). 
+
+As for space complexity, the operations of RouteTrie / RouteTrieNode depend on O(u * p) while u is the url depth (represents recursion depth) and p is number of paths. 
